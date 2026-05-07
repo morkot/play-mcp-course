@@ -1,4 +1,4 @@
-from pydentic import Field
+from pydantic import Field
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("DocumentMCP", log_level="ERROR")
@@ -14,7 +14,7 @@ docs = {
 }
 
 @mcp.tool(
-    name = "read_doc_contents"
+    name = "read_doc_contents",
     description = "Read the contents and return it"
 )
 def read_document(doc_id: str = Field(description = "Id of the document to read")):
@@ -23,8 +23,6 @@ def read_document(doc_id: str = Field(description = "Id of the document to read"
 
     return docs[doc_id]
 
-
-# TODO: Write a tool to edit a doc
 @mcp.tool(
     name="edit_document",
     description="Edit a document by replacing a string in the documents content with a new string"
